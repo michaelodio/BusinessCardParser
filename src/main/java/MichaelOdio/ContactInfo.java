@@ -1,9 +1,10 @@
 package MichaelOdio;
 
 public class ContactInfo {
-    private String name;
+    //private String name;
     private String phoneNumber;
     private String emailAddress;
+    private String name;
 
     public ContactInfo(String name, String phoneNumber, String emailAddress) {
         this.name = name;

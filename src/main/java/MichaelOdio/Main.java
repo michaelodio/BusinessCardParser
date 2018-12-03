@@ -41,6 +41,7 @@ public class Main {
         System.out.println("Enter a file path: ");
         String file = reader.next();
         m.readFile(file);
+        reader.close();
 
         BusinessCardParser businessCardParser = new BusinessCardParser();
 
