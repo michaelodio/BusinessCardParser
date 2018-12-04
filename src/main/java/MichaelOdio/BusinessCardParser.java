@@ -8,6 +8,8 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.Span;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.io.IOException;
 
 import java.util.Scanner;
@@ -54,14 +56,24 @@ public class BusinessCardParser {
         return ci;
     }
 
+    /**Checks current line and validates for email
+    First simple check occurs then passes
+     to regex to parse out Phone or tel then
+     to apache commons validator for a robust
+     validation
+     **/
     private String validateEmail(String line) {
-
         if (line.contains("@")) {
             String emailRegex = ".*?([^\\s]+@[^\\s]+).*?";
             Pattern pattern = Pattern.compile(emailRegex);
             Matcher matcher = pattern.matcher(line);
             if (matcher.matches()) {
-                return matcher.group(1);
+                boolean isEmail = EmailValidator.getInstance().isValid(matcher.group(1));
+                if(isEmail) {
+                    return matcher.group(1);
+                }else{
+                    return null;
+                }
             } else {
                 return null;
             }
