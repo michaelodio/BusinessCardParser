@@ -42,11 +42,17 @@
 Sample outcome:
 
 Enter a file path for a txt file or exit to terminate:
+
 C:\Users\Chel\Documents\example3.txt
+
 Output
+
 Name: Bob Smith
+
 Phone Number: 17035551259
+
 Email: bsmith@abctech.com
+
 
 Enter a file path for a txt file or exit to terminate:
 exit
