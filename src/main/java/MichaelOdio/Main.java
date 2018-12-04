@@ -34,19 +34,35 @@ public class Main {
 
 
     public static void main(String args[]) {
-        Main m = new Main();
 
 
+            boolean exit = true;
+
+
+
+    do {
         Scanner reader = new Scanner(System.in);
-        System.out.println("Enter a file path: ");
+        System.out.println("Enter a file path for a txt file or exit to terminate: ");
         String file = reader.next();
-        m.readFile(file);
-        reader.close();
+        if(!(file.equals("exit"))){
+            Main m = new Main();
+            m.readFile(file);
 
-        BusinessCardParser businessCardParser = new BusinessCardParser();
+            BusinessCardParser businessCardParser = new BusinessCardParser();
 
-        ContactInfo contactInfo = businessCardParser.getContactInfo(m.getDocument());
-        System.out.println(contactInfo.toString());
+            ContactInfo contactInfo = businessCardParser.getContactInfo(m.getDocument());
+
+            System.out.println("Output" + "\n" + contactInfo.toString() + "\n");
+
+        }
+        else{
+            exit = false;
+            reader.close();
+        }
+
+
+    }while(exit == true);
+
 
     }
 }
