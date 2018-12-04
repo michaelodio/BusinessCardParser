@@ -24,7 +24,8 @@ public class BusinessCardParser {
     private NameFinderME nameFinder = null;
     private double highestNameProb = 0.0;
     private String name = null;
-
+    
+    //Initializes openNLP models toidetify possible names 
     public BusinessCardParser() {
         try {
             tokenizer = new TokenizerME(new TokenizerModel(ClassLoader.getSystemResourceAsStream("en-token.bin")));
@@ -34,7 +35,8 @@ public class BusinessCardParser {
             e.printStackTrace();
         }
     }
-
+    
+    //Checks if each line could either be a name, phone number or email
     public ContactInfo getContactInfo(String document) {
         Scanner sc = new Scanner(document);
         String email = null;
@@ -63,7 +65,7 @@ public class BusinessCardParser {
      validation
      **/
     private String validateEmail(String line) {
-        if (line.contains("@")) {
+        
             String emailRegex = ".*?([^\\s]+@[^\\s]+).*?";
             Pattern pattern = Pattern.compile(emailRegex);
             Matcher matcher = pattern.matcher(line);
@@ -77,12 +79,9 @@ public class BusinessCardParser {
             } else {
                 return null;
             }
-        } else {
-            return null;
-        }
-
+        
     }
-
+    //Takes in current line and checks if it is a possible phone number with regex
     public String validatePhoneNumber(String line) {
 
         String phoneRegex = ".*?([0-9]+)[^0-9]*[^0-9]*([0-9]*)[^0-9]*([0-9]*)[^0-9]*([0-9]*).*?";
@@ -120,6 +119,7 @@ public class BusinessCardParser {
 
 
     }
+    //Checks current line if it is a possible English name highest possible name is stored and sets name variable
     public String validateName(String line) {
 
         String tokens[] = tokenizer.tokenize(line);
