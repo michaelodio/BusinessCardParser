@@ -7,6 +7,9 @@
  This program use Apache Commons Validator to validate any email address that may be found and uses openNLP library to parse
  and produce the most probable name on the business card.
  
+ For this solution openNLP utilizes en-ner-person and en-token models to locate any possible English names.
+ Other models can be added to identify non-english names as well with openNLP.
+ 
  There are  other options to validating the phone number such as googles libphonenumber which can provide a robust form of validation on a possible phone number. But at the cost of using too much memory, this solution does not use it and instead uses regex.
  
  To run the program first download it from https://github.com/michaelodio/BusinessCardParser
